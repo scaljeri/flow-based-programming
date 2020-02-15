@@ -31,7 +31,8 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/@scaljeri/fbp-elements/dist/fbp-bundle.js"
+              "node_modules/@scaljeri/fbp-elements/dist/fbp-elements.js"
+              // "./angularapp.js"
             ]
           },
           "configurations": {

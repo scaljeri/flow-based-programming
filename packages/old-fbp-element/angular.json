@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "test-site": {
+    "fbp-elements": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -12,12 +12,12 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "fbp",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/test-site",
+            "outputPath": "dist/fbp-elements",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -30,19 +30,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [
-              // "node_modules/@scaljeri/fbp-elements/dist/fbp-bundle.js"
-              // "node_modules/@scaljeri/fbp-elements/dist/fbp-elements/runtime-es2015.js" type="module"></script>
-              // "node_modules/@scaljeri/fbp-elements/dist/fbp-elements/polyfills-es2015.js" type="module"></script>
-              // "node_modules/@scaljeri/fbp-elements/dist/fbp-elements/styles-es2015.js" type="module"></script>
-              // "node_modules/@scaljeri/fbp-elements/dist/fbp-elements/vendor-es2015.js" type="module"></script>
-              // "node_modules/@scaljeri/fbp-elements/dist/fbp-elements/main-es2015.js" type="module"></script>
-              // "node_modules/@scaljeri/fbp-elements/dist/fbp-elements/runtime-es5.js",
-              // "node_modules/@scaljeri/fbp-elements/dist/fbp-elements/polyfills-es5.js",
-              "node_modules/@scaljeri/fbp-elements/dist/fbp-elements/styles-es5.js",
-              "node_modules/@scaljeri/fbp-elements/dist/fbp-elements/vendor-es5.js",
-              "node_modules/@scaljeri/fbp-elements/dist/fbp-elements/main-es5.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -78,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "test-site:build"
+            "browserTarget": "fbp-elements:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "test-site:build:production"
+              "browserTarget": "fbp-elements:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "test-site:build"
+            "browserTarget": "fbp-elements:build"
           }
         },
         "test": {
@@ -126,18 +114,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "test-site:serve"
+            "devServerTarget": "fbp-elements:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "test-site:serve:production"
+              "devServerTarget": "fbp-elements:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "test-site",
+  "defaultProject": "fbp-elements",
   "cli": {
     "analytics": false
   }
