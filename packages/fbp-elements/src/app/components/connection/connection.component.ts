@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'fbp-connection',
+  selector: 'app-connection',
   templateUrl: './connection.component.html',
   styleUrls: ['./connection.component.scss']
 })
