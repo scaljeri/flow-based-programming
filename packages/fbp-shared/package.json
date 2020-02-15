@@ -1,0 +1,14 @@
+{
+  "name": "@scaljeri/fbp-shared",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "scripts": {
+    "build": "rm -rf ./dist && tsc"
+  },
+  "dependencies": {
+    "tslib": "^1.10.0",
+    "typescript": "^3.7.5"
+  }
+}
