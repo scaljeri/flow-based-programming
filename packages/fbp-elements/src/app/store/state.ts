@@ -2,25 +2,25 @@ import { State, Action, StateContext } from '@ngxs/store';
 
 import { IFbpState } from '@scaljeri/fbp-shared';
 import { Injectable } from '@angular/core';
+import { FbpStateActions } from './actions/state';
 
-// export class Increment {
-//    static readonly type = '[Counter] Increment';
-// }
-// export class Decrement {
-//    static readonly type = '[Counter] Decrement';
-// }
 @State<IFbpState>({
-   name:'fbp',
-   defaults: { nodes: [], connections: [] }
+	name: 'fbp',
+	defaults: {
+		name: 'FBP',
+		nodes: [],
+		connections: []
+	}
 })
 @Injectable()
 export class FfpState {
-   // @Action(Increment)
-   //    increment(ctx: StateContext<number>) {
-   //    ctx.setState(ctx.getState() + 1);
-   // }
-   // @Action(Decrement)
-   //    decrement(ctx: StateContext<number>) {
-   //    ctx.setState(ctx.getState() - 1);
-   //  }
+	@Action(FbpStateActions.New)
+	newState(ctx: StateContext<IFbpState>, { payload }: { payload: IFbpState }) {
+		console.log('UPDATE state ', payload);
+		ctx.setState(payload);
+	}
+	// @Action(Decrement)
+	//    decrement(ctx: StateContext<number>) {
+	//    ctx.setState(ctx.getState() - 1);
+	//  }
 }
