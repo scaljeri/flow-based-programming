@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "rm -rf ./dist && ng build els --prod --output-hashing=none && yarn build:concat",
+    "build": "ng build els --prod --output-hashing=none && yarn build:concat",
     "build:concat": "cat dist/els/runtime-es5.js dist/els/polyfills-es5.js dist/els/main-es5.js > ./dist/fbp-elements.js",
     "test": "ng test",
     "lint": "ng lint",
