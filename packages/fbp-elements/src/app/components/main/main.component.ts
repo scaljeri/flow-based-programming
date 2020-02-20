@@ -3,6 +3,7 @@ import { IFbpState } from '@scaljeri/fbp-shared';
 // import { Select } from '@ngxs/store';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
 import { FbpStateActions } from 'src/app/store/actions/state';
+import { Store } from '@ngxs/store';
 
 @Component({
 	templateUrl: './main.component.html',
@@ -17,15 +18,19 @@ export class MainComponent implements OnInit, OnChanges {
 
 	@Dispatch() newState = (state: IFbpState) => new FbpStateActions.New(state);
 
-	constructor() { }
+	constructor(private store: Store) { }
 
 	ngOnInit(): void {
 	}
 
 	ngOnChanges(): void {
 		// state stuff
-		console.log(this.state);
-		this.newState(this.state);
+		setTimeout(() => {
+			console.log('main: ', this.state);
+			this.newState(this.state);
+		})
+		// this.store.dispatch(new FbpStateActions.New(this.state));
+		// this.store.reset(this.state);
 	}
 
 	get nodeTitle(): string {

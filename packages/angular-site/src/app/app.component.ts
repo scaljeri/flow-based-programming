@@ -9,4 +9,6 @@ import { fixtureFbpBasic } from '@scaljeri/fbp-shared';
 export class AppComponent {
   title = 'another-site';
   data = fixtureFbpBasic;
+
+  // nodeId = this.data.nodes[0].id;
 }

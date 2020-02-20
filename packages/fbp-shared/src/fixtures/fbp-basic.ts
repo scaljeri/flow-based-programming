@@ -19,15 +19,15 @@ export const fixtureFbpBasic = {
                 }
             ]
         },
-        // {
-        //     id: 'sreger4',
-        //     type: 'logger',
-        //     view: {
-        //         x: 30,
-        //         y: 30
-        //     },
-        //     sockets: [{ id: 'wfgfdfg', type: FbpSocketTypes.IN }]
-        // }
+        {
+            id: 'sreger4',
+            type: 'logger',
+            view: {
+                x: 30,
+                y: 30
+            },
+            sockets: [{ id: 'wfgfdfg', type: FbpSocketTypes.IN }]
+        }
     ] as IFbpNode[],
     connections: [
         {

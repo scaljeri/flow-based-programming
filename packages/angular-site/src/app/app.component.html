@@ -1,5 +1,5 @@
 <fbp-main [state]="data">
-  <fbp-node [id]="data.nodes[0].id">
-    yolo
+  <fbp-node *ngFor="let node of data.nodes" [id]="node.id">
+    node-content goes here
   </fbp-node>
 </fbp-main>

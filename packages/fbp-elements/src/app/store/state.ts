@@ -1,8 +1,9 @@
-import { State, Action, StateContext } from '@ngxs/store';
+import { State, Action, StateContext, Selector, createSelector } from '@ngxs/store';
 
 import { IFbpState } from '@scaljeri/fbp-shared';
 import { Injectable } from '@angular/core';
 import { FbpStateActions } from './actions/state';
+import { Observable } from 'rxjs';
 
 @State<IFbpState>({
 	name: 'fbp',
@@ -13,10 +14,27 @@ import { FbpStateActions } from './actions/state';
 	}
 })
 @Injectable()
-export class FfpState {
+export class FbpState {
+	// @Selector([FbpState])
+	static nodes(state: IFbpState) {
+		console.log('State#nodes');
+		return state.nodes;
+	}
+
+	// @Selector([FbpState.nodes])
+	static getNode(nodeId: string) {
+		console.log('State#getNode', nodeId);
+		return createSelector([FbpState], (state: IFbpState) => {
+			const outNode = state.nodes.filter(node => node.id === nodeId)[0];
+			console.log('State#getNode#createSelector', nodeId, outNode, state);
+
+			return outNode;
+		});
+	}
+
 	@Action(FbpStateActions.New)
 	newState(ctx: StateContext<IFbpState>, { payload }: { payload: IFbpState }) {
-		console.log('UPDATE state ', payload);
+		console.log('State#newState', payload);
 		ctx.setState(payload);
 	}
 	// @Action(Decrement)
