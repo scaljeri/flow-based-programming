@@ -1,5 +1,9 @@
-<fbp-main [state]="data">
+<!-- <fbp-main [state]="data">
   <fbp-node *ngFor="let node of data.nodes" [id]="node.id">
-    node-content goes here
+    <ng-template [ngComponentOutlet]="loadComponent(node) | async"></ng-template>
   </fbp-node>
-</fbp-main>
+</fbp-main> -->
+
+<ng-template [ngComponentOutlet]="loadComponent('random-number-generator') | async"></ng-template>
+<ng-template [ngComponentOutlet]="loadComponent('logger') | async"></ng-template>
+<ng-template [ngComponentOutlet]="loadComponent('test-test') | async"></ng-template>

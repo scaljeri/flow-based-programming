@@ -7,6 +7,7 @@ export const fixtureFbpBasic = {
         {
             id: 'sfgt23',
             type: 'random-number-generator',
+            // type: 'code',
             position: {
                 x: 50,
                 y: 50
