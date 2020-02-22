@@ -32,7 +32,8 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/@scaljeri/fbp-framework/dist/fbp-framework.js"
+              "node_modules/@scaljeri/fbp-framework/dist/fbp-framework.js",
+              "node_modules/@scaljeri/fbp-blocks/dist/fbp-blocks.js"
             ]
           },
           "configurations": {

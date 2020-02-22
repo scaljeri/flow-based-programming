@@ -54,7 +54,7 @@ export class NodeComponent implements OnInit, AfterViewInit, OnChanges {
 
 	ngAfterViewInit(): void {
 		const child = this.element.nativeElement.children[0];
-		// console.log('Node::::', this.element.nativeElement.children, this.element.nativeElement.children.item(0), child);
+		console.log('Node::::', this.element.nativeElement.children, this.element.nativeElement.children.item(0), child);
 		// child.setSocket('yes from parent');
 		// setTimeout(() => {
 		// 	console.log('delayNODE id= ' + this.idx);
