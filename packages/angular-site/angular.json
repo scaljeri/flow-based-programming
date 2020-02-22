@@ -32,8 +32,11 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/@scaljeri/fbp-framework/dist/fbp-framework.js",
-              "node_modules/@scaljeri/fbp-blocks/dist/fbp-blocks.js"
+              "node_modules/@scaljeri/fbp-framework/dist/fbp-framework/polyfills-es5.js",
+              "node_modules/@scaljeri/fbp-framework/dist/fbp-framework/runtime-es5.js",
+              "node_modules/@scaljeri/fbp-framework/dist/fbp-framework/main-es5.js",
+              "node_modules/@scaljeri/fbp-blocks/dist/fbp-blocks/polyfills-es5.js",
+              "node_modules/@scaljeri/fbp-blocks/dist/fbp-blocks/main-es5.js"
             ]
           },
           "configurations": {

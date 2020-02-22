@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build els --prod --output-hashing=none && yarn build:concat",
+	"start": "ng serve",
+	"build": "ng build fbp-framework --prod --output-hashing=none --extra-webpack-config ./webpack.extra.js",
     "build:concat": "cat dist/els/runtime-es5.js dist/els/polyfills-es5.js dist/els/main-es5.js > ./dist/fbp-framework.js",
     "test": "ng test",
     "lint": "ng lint",
@@ -45,6 +45,7 @@
     "karma-coverage-istanbul-reporter": "~2.1.0",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
+    "ngx-build-plus": "^9.0.6",
     "protractor": "~5.4.3",
     "ts-node": "~8.3.0",
     "tslint": "~5.18.0",
