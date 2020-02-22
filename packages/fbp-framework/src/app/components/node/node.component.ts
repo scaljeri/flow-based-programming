@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, OnChanges, Input, ViewEncapsulation, ChangeDetectionStrategy, SimpleChange, SimpleChanges, ChangeDetectorRef } from '@angular/core';
+import { Component, ElementRef, OnInit, AfterViewInit, OnChanges, Input, ViewEncapsulation, ChangeDetectionStrategy, SimpleChange, SimpleChanges, ChangeDetectorRef, ContentChild } from '@angular/core';
 import { Store, Select } from '@ngxs/store';
 import { IFbpNode, IFbpState } from '@scaljeri/fbp-shared';
 import { Observable } from 'rxjs';
@@ -20,7 +20,7 @@ export class NodeComponent implements OnInit, AfterViewInit, OnChanges {
 	state$;
 	// @Select(FbpState) state$: Observable<FbpState>;
 
-	constructor(private store: Store, private cdr: ChangeDetectorRef) {
+	constructor(private element: ElementRef, private store: Store, private cdr: ChangeDetectorRef) {
 		// this.node$ = this.store
 		// 	.select(FfpState).pipe(
 		// 		tap(d => console.log('tap', d)),
@@ -31,7 +31,7 @@ export class NodeComponent implements OnInit, AfterViewInit, OnChanges {
 	ngOnInit(): void {
 		// this.state$.subscribe(state => {
 		// 	console.log('NodeComponent@state yesyes', state);
-		// })
+		// }ci)
 	}
 
 	ngOnChanges(changes: SimpleChanges): void {
@@ -53,6 +53,10 @@ export class NodeComponent implements OnInit, AfterViewInit, OnChanges {
 	}
 
 	ngAfterViewInit(): void {
+		const child = this.element.nativeElement.children[0];
+		console.log('Node::::', this.element.nativeElement.children, this.element.nativeElement.children.item(0), child);
+		debugger;
+		child.setSocket('yes from parent');
 		// setTimeout(() => {
 		// 	console.log('delayNODE id= ' + this.idx);
 		// });

@@ -36,4 +36,9 @@ export class MainComponent implements OnInit, OnChanges {
 	get nodeTitle(): string {
 		return 'Node title';
 	}
+
+	@Input()
+	xxx(input: string) {
+		console.log("xxxx" ,input);
+	}
 }
