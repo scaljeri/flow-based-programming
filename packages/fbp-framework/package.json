@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build els --prod --output-hashing=none && yarn build:concat",
-    "build:concat": "cat dist/els/runtime-es5.js dist/els/polyfills-es5.js dist/els/main-es5.js > ./dist/fbp-elements.js",
+    "build:concat": "cat dist/els/runtime-es5.js dist/els/polyfills-es5.js dist/els/main-es5.js > ./dist/fbp-framework.js",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

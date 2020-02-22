@@ -2,8 +2,13 @@
 
 echo CLEANUP PHASE
 
-echo find . -name "node_modules" -exec rm -rf '{}' +
-find . -name "node_modules" -exec rm -rf '{}' +
+if [[ $# -eq 0 || $1 != "--skip-node-modules" ]]
+  then
+	  echo find . -name "node_modules" -exec rm -rf '{}' +
+    find . -name "node_modules" -exec rm -rf '{}' +
+else
+  echo "SKIPPING NODE-MODULES"
+fi
 
 # REMOVE
 echo cd packages/angular-site

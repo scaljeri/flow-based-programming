@@ -32,7 +32,7 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/@scaljeri/fbp-elements/dist/fbp-elements.js"
+              "node_modules/@scaljeri/fbp-framework/dist/fbp-framework.js"
             ]
           },
           "configurations": {
