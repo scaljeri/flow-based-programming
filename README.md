@@ -1,13 +1,10 @@
-    $> cd packages/fbp-elements
-    $> yarn 
-    $> yarn build
-    $> yarn link
+### Setup
 
-goto
+    $> yarn prepare
 
-    $> packages/angular-site
-    $> yarn
-    $> yarn link @scaljeri/fbp-elements
+goto ./packages/angular-site and do
+
     $> yarn start
 
-This should work, however, `packages/old-fbp-element` will fail
+The packages (not used anymore) which will break everything is `packages/old-fbp-element`
+It is still unknown why this `old-fbp-element` packages breaks everything!!

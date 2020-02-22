@@ -1,6 +1,6 @@
 {
-  "name": "fbp-blocks",
-  "version": "0.0.0",
+  "name": "@scaljeri/fbp-blocks",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
