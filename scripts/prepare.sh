@@ -1,5 +1,3 @@
-#! /bin/bash
-
 echo CLEANUP PHASE
 
 if [[ $# -eq 0 || $1 != "--skip-node-modules" ]]
@@ -75,6 +73,19 @@ yarn link @scaljeri/fbp-shared
 echo yarn build
 yarn build
 
+echo FBP-MATERIAL
+echo cd ../fbp-material
+cd ../fbp-material
+echo yarn link
+yarn link
+echo yarn
+yarn
+echo yarn link @scaljeri/fbp-shared
+yarn link @scaljeri/fbp-shared
+echo yarn build
+yarn build
+
+
 echo ANGULAR-SITE
 echo cd ../angular-site
 cd ../angular-site
@@ -84,5 +95,7 @@ echo yarn link @scaljeri/fbp-framework
 yarn link @scaljeri/fbp-framework
 echo yarn link @scaljeri/fbp-blocks
 yarn link @scaljeri/fbp-blocks
+echo yarn link @scaljeri/fbp-material
+yarn link @scaljeri/fbp-material
 echo yarn
 yarn

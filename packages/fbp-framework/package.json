@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
 	"start": "ng serve",
-	"build": "ng build fbp-framework --prod --output-hashing=none --extra-webpack-config ./webpack.extra.js",
+	"build": "ng build fbp-framework --prod --output-hashing=none --extra-webpack-config ./webpack.extra.js --single-bundle",
     "build:concat": "cat dist/els/runtime-es5.js dist/els/polyfills-es5.js dist/els/main-es5.js > ./dist/fbp-framework.js",
     "test": "ng test",
     "lint": "ng lint",

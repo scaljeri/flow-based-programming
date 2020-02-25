@@ -1,12 +1,12 @@
 {
-  "name": "flow-based-programming",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "dependencies": {
-    "@angular/cli": "^9.0.2"
-	},
-	"scripts": {
-		"prepare": "./scripts/prepare.sh"
-	}
+ "name": "flow-based-programming",
+ "version": "1.0.0",
+ "main": "index.js",
+ "license": "MIT",
+ "dependencies": {
+  "@angular/cli": "^9.0.3"
+ },
+ "scripts": {
+  "prep": "./scripts/prepare.sh"
+ }
 }
