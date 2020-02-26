@@ -1,5 +1,5 @@
 {
-  "name": "fbp-material",
+  "name": "@scaljeri/fbp-material",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
