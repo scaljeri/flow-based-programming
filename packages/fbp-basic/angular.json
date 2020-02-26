@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "fbp-blocks": {
+    "fbp-basic": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "ngx-build-plus:browser",
           "options": {
-            "outputPath": "dist/fbp-blocks",
+            "outputPath": "dist/fbp-basic",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -30,7 +30,10 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/@scaljeri/fbp-nodes/dist/fbp-nodes/main-es5.js",
+              "./node_modules/@scaljeri/fbp-framework/dist/fbp-framework/main-es5.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -66,18 +69,18 @@
         "serve": {
           "builder": "ngx-build-plus:dev-server",
           "options": {
-            "browserTarget": "fbp-blocks:build"
+            "browserTarget": "fbp-basic:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "fbp-blocks:build:production"
+              "browserTarget": "fbp-basic:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "fbp-blocks:build"
+            "browserTarget": "fbp-basic:build"
           }
         },
         "test": {
@@ -114,18 +117,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "fbp-blocks:serve"
+            "devServerTarget": "fbp-basic:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "fbp-blocks:serve:production"
+              "devServerTarget": "fbp-basic:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "fbp-blocks",
+  "defaultProject": "fbp-basic",
   "cli": {
     "analytics": false
   }

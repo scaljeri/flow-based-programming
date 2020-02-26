@@ -7,6 +7,6 @@
   "@angular/cli": "^9.0.3"
  },
  "scripts": {
-  "prep": "./scripts/prepare.sh"
+  "setup": "./scripts/setup.sh"
  }
 }

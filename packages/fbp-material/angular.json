@@ -30,7 +30,10 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/@scaljeri/fbp-nodes-material/dist/fbp-material/main-es5.js",
+              "./node_modules/@scaljeri/fbp-framework/dist/fbp-framework/main-es5.js"
+            ]
           },
           "configurations": {
             "production": {

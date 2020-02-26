@@ -21,6 +21,7 @@ export class MainComponent implements OnInit, OnChanges {
 	constructor(private store: Store) { }
 
 	ngOnInit(): void {
+		console.log('framework: main!!');
 	}
 
 	ngOnChanges(): void {

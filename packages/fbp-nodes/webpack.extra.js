@@ -1,5 +1,5 @@
 module.exports = {
    output: {
-      jsonpFunction: 'fbpMaterial'
+     jsonpFunction: 'fbpNodes'
    }
 }

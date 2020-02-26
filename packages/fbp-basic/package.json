@@ -1,10 +1,11 @@
 {
-  "name": "fbp-material",
+  "name": "@scaljeri/fbp-basic",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build fbp-material --prod --output-hashing=none --extra-webpack-config ./webpack.extra.js --single-bundle",
+    "build": "ng build fbp-basic -prod --output-hashing=none --extra-webpack-config ./webpack.extra.js --single-bundle && yarn build:concat",
+    "build:concat": "cat ./dist/fbp-basic/scripts.js ./dist/fbp-basic/main-es5.js > ./dist/fbp-basic/bundle.js",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -20,6 +21,7 @@
     "@angular/platform-browser": "~9.0.2",
     "@angular/platform-browser-dynamic": "~9.0.2",
     "@angular/router": "~9.0.2",
+    "ngx-build-plus": "^9.0.6",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
@@ -40,7 +42,6 @@
     "karma-coverage-istanbul-reporter": "~2.1.0",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
-    "ngx-build-plus": "^9.0.6",
     "protractor": "~5.4.3",
     "ts-node": "~8.3.0",
     "tslint": "~5.18.0",
