@@ -32,6 +32,12 @@ export class NodeComponent implements OnInit, AfterViewInit, OnChanges {
 		// this.state$.subscribe(state => {
 		// 	console.log('NodeComponent@state yesyes', state);
 		// }ci)
+		setTimeout(() => {
+			const x = this.element.nativeElement.querySelector('[name=small]');
+			const slot = this.element.nativeElement.shadowRoot.querySelector('slot[name=small]').assignedElements()[0];
+
+			console.log('XXXXXXXXXXXX=', slot);
+		}, 1000);
 	}
 
 	ngOnChanges(changes: SimpleChanges): void {

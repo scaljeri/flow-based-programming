@@ -1,5 +1,6 @@
 <fbp-main [state]="data">
   <fbp-node *ngFor="let node of data.nodes" [id]="node.id">
     <ng-template [ngComponentOutlet]="loadComponent(node.type) | async"></ng-template>
+    <p slot="small">XXX</p>
   </fbp-node>
 </fbp-main>

@@ -4,7 +4,7 @@
 
 To run the demo site
 
-    $> cd apps/angular-site
+		$> cd apps/angular-site
 		$> yarn start
 
 ### Bookmarks
