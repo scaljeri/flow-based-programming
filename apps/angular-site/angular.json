@@ -33,7 +33,7 @@
             ],
             "scripts": [
               "node_modules/@scaljeri/fbp-basic/dist/fbp-basic/polyfills-es5.js",
-              "node_modules/@scaljeri/fbp-basic/dist/fbp-basic/bundle.js"
+              "node_modules/@scaljeri/fbp-basic/dist/fbp-material/bundle.js"
             ]
           },
           "configurations": {

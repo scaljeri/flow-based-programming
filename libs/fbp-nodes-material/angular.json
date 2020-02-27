@@ -17,7 +17,7 @@
         "build": {
           "builder": "ngx-build-plus:browser",
           "options": {
-            "outputPath": "dist/fbp-material",
+            "outputPath": "dist/fbp-nodes-material",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -30,7 +30,9 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/@scaljeri/fbp-shared/dist/index.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -66,18 +68,18 @@
         "serve": {
           "builder": "ngx-build-plus:dev-server",
           "options": {
-            "browserTarget": "fbp-material:build"
+            "browserTarget": "fbp-nodes-material:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "fbp-material:build:production"
+              "browserTarget": "fbp-nodes-material:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "fbp-material:build"
+            "browserTarget": "fbp-nodes-material:build"
           }
         },
         "test": {
@@ -114,18 +116,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "fbp-material:serve"
+            "devServerTarget": "fbp-nodes-material:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "fbp-material:serve:production"
+              "devServerTarget": "fbp-nodes-material:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "fbp-material",
+  "defaultProject": "fbp-nodes-material",
   "cli": {
     "analytics": false
   }

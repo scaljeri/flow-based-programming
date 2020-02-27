@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build fbp-material --prod --output-hashing=none --extra-webpack-config ./webpack.extra.js --single-bundle",
+    "build": "ng build fbp-material --prod --output-hashing=none --extra-webpack-config ./webpack.extra.js --single-bundle && yarn build:concat",
+    "build:concat": "cat ./dist/fbp-material/scripts.js ./dist/fbp-material/main-es5.js > ./dist/bundle.js",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

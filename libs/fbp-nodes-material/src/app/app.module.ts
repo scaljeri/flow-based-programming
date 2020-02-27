@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Injector } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { createCustomElement } from '@angular/elements';
 
@@ -12,7 +13,8 @@ import { NodeFooterComponent } from './components/node-footer/node-footer.compon
     NodeFooterComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BrowserAnimationsModule
   ],
   providers: [],
 })

@@ -53,7 +53,7 @@ echo yarn unlink
 yarn unlink
 
 # LINK
-echo SETUP PHASE
+echo SETUP PHASE ---------------------------------
 
 echo FBP-SHARED
 cd ../fbp-shared
