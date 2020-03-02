@@ -30,9 +30,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [
-              "./node_modules/@scaljeri/fbp-shared/dist/index.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {

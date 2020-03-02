@@ -1,0 +1,13 @@
+<html>
+	<head>
+		<script>
+			var worker = new Worker('/random-number-generator.js')
+
+			worker.addEventListener('message', function ({data}) {
+				console.log('received msg from worker: ',data)
+			});
+
+			worker.postMessage('yolo');
+		</script>
+	</head>
+</html>
