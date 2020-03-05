@@ -1,8 +1,9 @@
 export enum FbpSocketTypes {
     IN,
-    OUT
+		OUT,
+		INTERN
 }
-export interface FbpSocket {
+export interface IFbpSocket {
     color?: string;
     label?: string;
     type: FbpSocketTypes;

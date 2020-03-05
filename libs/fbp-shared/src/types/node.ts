@@ -1,4 +1,4 @@
-import { FbpSocket } from './socket';
+import { IFbpSocket } from './socket';
 
 export interface IFbpNodeView {
     x: number;
@@ -34,7 +34,7 @@ export interface IFbpNode<T = any> {
     isFullscreen?: boolean;
     mode?: 'normal' | 'demo'; // normal is default and `demo` is with transparent sockets
     state?: T;
-    sockets?: FbpSocket[];
+    sockets?: IFbpSocket[];
     doc?: IFbpDocNode;
-       
+
 }
