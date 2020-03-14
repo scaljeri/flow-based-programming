@@ -1,4 +1,5 @@
 export interface IFbpConnection {
-    from: string;
-    to: string;
+	id: string;
+	from: string;
+	to: string;
 }

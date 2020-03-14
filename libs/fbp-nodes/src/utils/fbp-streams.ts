@@ -7,7 +7,7 @@ interface StreamManagement {
 	observable: Observable<any>;
 }
 
-export class FbpDataEngine {
+export class FbpStreams {
 	private streamz: Record<string, StreamManagement> = {}
 
 	constructor() { }
@@ -36,13 +36,16 @@ export class FbpDataEngine {
 		return this.streamz[id].subject;
 	}
 
-	unsubscribe(id: string) {
-		this.streamz[id].count--;
+	unsubscribe(...ids: string[]) {
+		ids.forEach(id => {
 
-		// cleanup
-		if (this.streamz[id].count === 0) {
-			delete this.streamz[id];
-		}
+			this.streamz[id].count--;
+
+			// cleanup
+			if (this.streamz[id].count === 0) {
+				delete this.streamz[id];
+			}
+		});
 	}
 
 	private createStream(): StreamManagement {

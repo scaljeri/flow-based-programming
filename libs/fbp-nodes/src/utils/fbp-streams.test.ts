@@ -1,4 +1,4 @@
-import { FbpDataEngine } from './data-engine';
+import { FbpStreams } from './fbp-streams';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 import * as chai from 'chai';
@@ -13,10 +13,10 @@ describe('DataEngine', () => {
 	let consumeA: Observable<any>;
 	let consumeB: Observable<any>;
 	let consumeC: Observable<any>;
-	let engine: FbpDataEngine;
+	let engine: FbpStreams;
 
 	beforeEach(() => {
-		engine = new FbpDataEngine();
+		engine = new FbpStreams();
 
 		produceB = engine.produce('b');
 		consumeA = engine.consume('a');
@@ -27,7 +27,7 @@ describe('DataEngine', () => {
 	});
 
 	it('should instantiate', () => {
-		engine.should.exist;
+		should.exist(engine);
 	});
 
 	describe('Consume', () => {
@@ -76,10 +76,10 @@ describe('DataEngine', () => {
 
 	describe('#unsubscribe', () => {
 		beforeEach(() => {
-			engine.unsubscribe('a'); // still has 3 reference
-			engine.unsubscribe('a'); // still has 2 reference
-			engine.unsubscribe('a'); // still has 1 reference
-			engine.unsubscribe('b'); // still has 1 reference
+			engine.unsubscribe('a'); // 3 reference
+			engine.unsubscribe('a'); // 2 reference
+			engine.unsubscribe('a'); // 1 reference
+			engine.unsubscribe('b'); // 1 reference
 			engine.unsubscribe('b'); // zero refs -> removed
 		});
 
