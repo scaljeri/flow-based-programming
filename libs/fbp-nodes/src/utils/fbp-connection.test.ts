@@ -37,6 +37,12 @@ describe('DataEngine', () => {
 		should.exist(connection);
 	});
 
+	it('should do nothing on destroy', () => {
+		connection.destroy();
+
+		mockedStreams.unsubscribe.should.not.have.been.called;
+	});
+
 	describe('#connect', () => {
 		let value: number;
 
