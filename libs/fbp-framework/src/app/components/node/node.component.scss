@@ -1,4 +1,10 @@
 :host {
 	display: inline-block;
 	border: 2px solid #000;
+
+	position: absolute;
+
+	&.is-document {
+		position: relative;
+	}
 }

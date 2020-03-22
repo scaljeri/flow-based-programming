@@ -23,8 +23,8 @@ export interface IFbpDocNode {
 }
 
 export interface IFbpPosition {
-    x: number;
-    y: number;
+    top: number;
+    left: number;
 }
 
 export interface IFbpNode<T = any> {

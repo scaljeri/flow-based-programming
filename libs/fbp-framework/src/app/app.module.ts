@@ -6,16 +6,16 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { environment } from 'src/environments/environment';
 
 import { MainComponent } from './components/main/main.component';
-import { NodeComponent } from './components/node/node.component';
 import { ConnectionComponent } from './components/connection/connection.component';
 import { NgxsModule } from '@ngxs/store';
 import { FbpState } from './store/state';
 import { NodeHeaderComponent } from './components/node-header/node-header.component';
+import { FbpNodeComponent } from './components/node/node.component';
 
 @NgModule({
 	declarations: [
 		MainComponent,
-		NodeComponent,
+		FbpNodeComponent,
 		ConnectionComponent,
 		NodeHeaderComponent
 	],
@@ -40,7 +40,7 @@ export class AppModule {
 		let custom = createCustomElement(MainComponent, { injector: this.injector });
 		customElements.define('fbp-main', custom);
 
-		custom = createCustomElement(NodeComponent, { injector: this.injector });
+		custom = createCustomElement(FbpNodeComponent, { injector: this.injector });
 		customElements.define('fbp-node', custom);
 
 		if (!customElements.get('fbp-node-header')) {

@@ -9,8 +9,8 @@ export const fixtureFbpBasic = {
             type: 'random-number-generator',
             // type: 'code',
             position: {
-                x: 50,
-                y: 50
+                top: 50,
+                left: 50
             },
             sockets: [
                 { id: 'wfr2efwdv', type: FbpSocketTypes.IN },
@@ -23,9 +23,9 @@ export const fixtureFbpBasic = {
         {
             id: 'sreger4',
             type: 'logger',
-            view: {
-                x: 30,
-                y: 30
+            position: {
+                left: 30,
+                top: 30
             },
             sockets: [{ id: 'wfgfdfg', type: FbpSocketTypes.IN }]
         }

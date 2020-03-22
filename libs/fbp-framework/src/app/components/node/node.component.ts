@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, AfterViewInit, OnChanges, Input, ViewEncapsulation, ChangeDetectionStrategy, SimpleChange, SimpleChanges, ChangeDetectorRef, ContentChild } from '@angular/core';
+import { Component, ElementRef, OnInit, AfterViewInit, OnChanges, Input, ViewEncapsulation, ChangeDetectionStrategy, SimpleChange, SimpleChanges, ChangeDetectorRef, ContentChild, HostBinding } from '@angular/core';
 import { Store, Select } from '@ngxs/store';
 import { IFbpNode, IFbpState } from '@scaljeri/fbp-shared';
 import { Observable } from 'rxjs';
@@ -11,13 +11,23 @@ import { FbpState } from 'src/app/store/state';
 	encapsulation: ViewEncapsulation.ShadowDom,
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NodeComponent implements OnInit, AfterViewInit, OnChanges {
+export class FbpNodeComponent implements OnInit, AfterViewInit, OnChanges {
 	@Input() id: string;
 
 	public node$: Observable<IFbpNode>;
 	public node: IFbpNode;
 
-	state$;
+	@HostBinding('style.top')
+	get top(): string {
+		return `${this.node ? this.node.position.top : '-100'}%`;
+	}
+
+	@HostBinding('style.left')
+	get legt(): string {
+		return `${this.node ? this.node.position.left : '-100'}%`;
+	}
+
+	// state$;
 	// @Select(FbpState) state$: Observable<FbpState>;
 
 	constructor(private element: ElementRef, private store: Store, private cdr: ChangeDetectorRef) {
@@ -25,13 +35,23 @@ export class NodeComponent implements OnInit, AfterViewInit, OnChanges {
 		// 	.select(FfpState).pipe(
 		// 		tap(d => console.log('tap', d)),
 		// 		filter((node: IFbpNode) => node && node.id === this.idx));
-		this.state$ = this.store.select(FbpState);
+		// this.state$ = this.store.select(FbpState);
 	}
 
 	ngOnInit(): void {
 		// this.state$.subscribe(state => {
 		// 	console.log('NodeComponent@state yesyes', state);
 		// }ci)
+
+		const proto = Object.assign({ bubbles: true, cancelable: true, view: window, detail: { id: 'xxx'} }, {});
+
+		const evt = new CustomEvent('fbp.nodeAdd', proto);
+
+		this.element.nativeElement.addEventListener('fbp.nodeAdd', (data) => {
+			console.log('test test ', data);
+		});
+
+		this.element.nativeElement.dispatchEvent(evt);
 		setTimeout(() => {
 			const x = this.element.nativeElement.querySelector('[name=small]');
 			const slot = this.element.nativeElement.shadowRoot.querySelector('slot[name=small]').assignedElements()[0];
@@ -47,9 +67,11 @@ export class NodeComponent implements OnInit, AfterViewInit, OnChanges {
 			this.node$ = this.store.select(FbpState.getNode(this.id));
 			this.cdr.detectChanges();
 			this.node$.subscribe(node => {
-				console.log('xxxxNodeComponent@node$', node);
-				this.node = node;
-				this.cdr.detectChanges();
+				if (node) {
+					console.log('xxxxNodeComponent@node$', node);
+					this.node = node;
+					this.cdr.detectChanges();
+				}
 			});
 
 		}
