@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<!-- <script src="/dist/bundle.js"></script> -->
+		<script type="module">
+			const worker = new Worker('/dist/wrappers/web-worker/web-worker.js');
+			worker.postMessage({ type: 'init', payload: 'logger' });
+			// var worker = new Worker('/random-number-generator.js')
+
+			setTimeout(() => {
+				worker.postMessage({ type: 'packet', payload: 'magic' });
+			}, 500);
+			// worker.addEventListener('message', function ({data}) {
+			// 	console.log('received msg from worker: ',data)
+			// });
+
+			// worker.postMessage('yolo');
+
+			// setTimeout(() => {
+			// 	console.log('load it');
+			// 	import('./lib/main.js').then((module) => {
+			// 		console.log('done');
+			// 	});
+			// }, 100);
+		</script>
+	</head>
+</html>
