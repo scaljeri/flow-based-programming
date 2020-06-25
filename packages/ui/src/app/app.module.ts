@@ -36,9 +36,7 @@ import { LoggerComponent } from './components/nodes/logger/logger.component';
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {
-  constructor(private injector: Injector) {
-
-  }
+  constructor(private injector: Injector) {}
 
   ngDoBootstrap() {
     this.createCustomElement(MainComponent, 'main');
