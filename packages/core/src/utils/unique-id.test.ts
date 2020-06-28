@@ -3,15 +3,17 @@ import * as chai from 'chai';
 import * as sinonChai from 'sinon-chai';
 
 
-import { FbpConnection } from './fbp-connection';
-import { FbpStreams } from './fbp-streams';
 import { createUID } from './unique-id';
 
 const should = chai.should();
 chai.use(sinonChai);
 
 describe('createUID', () => {
-	it('should instantiate', () => {
+	it('should create a uid', () => {
 		should.exist(createUID());
+	});
+
+	it('should have the correct format', () => {
+		(createUID().match(/-/g) || []).length.should.equal(4);
 	});
 });
