@@ -1,8 +1,6 @@
 import { IFbpState } from '@scaljeri/fbp-core';
 
-export namespace FbpStateActions {
-	export class New {
-		static readonly type = '[State] New';
-		constructor(public payload: IFbpState) { }
-	}
+export class New {
+  static readonly type = '[State] New';
+  constructor(public payload: IFbpState) { }
 }

@@ -6,9 +6,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RandomNumberGeneratorComponent implements OnInit {
 
+  public value: number;
+
   constructor() { }
 
   ngOnInit() {
+    setInterval(() => {
+     this.value = Math.random();
+    }, 1000);
   }
 
 }

@@ -1,4 +1,4 @@
-import { IFbpNode } from './node';
+import { IFbpNode } from './nodes';
 
 export interface IFbpNodeWorker {
 	update(data: any): void;

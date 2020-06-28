@@ -15,7 +15,8 @@
       "es2018",
       "dom"
     ],
-    "types": [ "jest" ]
+    "types": [ "jest" ],
+    "skipLibCheck": true
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

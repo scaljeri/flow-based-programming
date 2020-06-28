@@ -25,7 +25,9 @@ import { LoggerComponent } from './components/nodes/logger/logger.component';
   ],
   imports: [
     BrowserModule,
-    NgxsModule.forRoot([FbpState], { developmentMode: true }),
+    NgxsModule.forRoot([FbpState], {
+      developmentMode: true,
+    }),
     NgxsDispatchPluginModule.forRoot(),
     NgxsReduxDevtoolsPluginModule.forRoot({
       name: 'NGXS store',

@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, AfterViewInit, OnChanges, Input, ViewEncapsulation, ChangeDetectionStrategy, SimpleChange, SimpleChanges, ChangeDetectorRef, ContentChild, HostBinding, OnDestroy } from '@angular/core';
+import { Component, ElementRef, OnInit, AfterViewInit, OnChanges, Input, ViewEncapsulation, ChangeDetectionStrategy, SimpleChange, SimpleChanges, ChangeDetectorRef, ContentChild, HostBinding, OnDestroy, Attribute } from '@angular/core';
 import { Store, Select } from '@ngxs/store';
 import { IFbpNode, IFbpState } from '@scaljeri/fbp-core';
 import { Observable } from 'rxjs';
@@ -15,11 +15,10 @@ import { NodeManagerService } from 'src/app/services/node-manager.service';
   encapsulation: ViewEncapsulation.ShadowDom,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NodeComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
-  @Input() @HostBinding('attr.id') id: string;
-
+export class NodeComponent implements OnInit, AfterViewInit, OnDestroy {
   public node$: Observable<IFbpNode>;
   public node: IFbpNode;
+  public id: string;
 
   @HostBinding('style.top')
   get top(): string {
@@ -47,6 +46,20 @@ export class NodeComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
   }
 
   ngOnInit(): void {
+    this.id = this.element.nativeElement.getAttribute('id');
+
+    this.store.select(FbpState.node(this.id)).subscribe((node: IFbpNode) => {
+      console.log('update ' + this.id);
+      this.node = node;
+    });
+
+    // this.store.select(FbpState.getNode(this.id)).subscribe((node: IFbpNode) => {
+    // this.store.select(FbpState.pandas(this.id)).subscribe((node: IFbpNode) => {
+    //   console.log('-----NODE UPDATE', this.id, node);
+    //   this.node = node;
+    //   // this.cdr.markForCheck();
+    // });
+
     // this.state$.subscribe(state => {
     // 	console.log('NodeComponent@state yesyes', state);
     // }ci)
@@ -60,28 +73,25 @@ export class NodeComponent implements OnInit, AfterViewInit, OnChanges, OnDestro
     // }, 1000);
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    const id = changes.id;
+  // ngOnChanges(changes: SimpleChanges): void {
+  //   const id = changes.id;
 
-    if (id.currentValue) {
-      // fbpDispatchEvent(FBP_NODE_EVENTS.ADD, this.element, { detail: { id: this.id } });
-      this.nodeService.addNode(this.id, this.element.nativeElement, this);
+  //   if (id.currentValue) {
+  //     // fbpDispatchEvent(FBP_NODE_EVENTS.ADD, this.element, { detail: { id: this.id } });
+  //     this.nodeService.addNode(this.id, this.element.nativeElement, this);
 
-      this.node$ = this.store.select(FbpState.getNode(this.id));
-      this.cdr.detectChanges();
-      this.node$.subscribe(node => {
-        if (node) {
-          console.log('xxxxNodeComponent@node$', node);
-          this.node = node;
-          this.cdr.detectChanges();
-        }
-      });
+  //     this.node$ = this.store.select(FbpState.getNode(this.id));
+  //     this.cdr.detectChanges();
+  //     this.node$.subscribe(node => {
+  //       if (node) {
+  //         console.log('xxxxNodeComponent@node$', node);
+  //         this.node = node;
+  //         this.cdr.detectChanges();
+  //       }
+  //     });
 
-    }
-
-
-
-  }
+  //   }
+  // }
 
   ngAfterViewInit(): void {
     const child = this.element.nativeElement.children[0];

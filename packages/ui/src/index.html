@@ -7,6 +7,25 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      margin: 20px;
+      height: calc(100% - 40px);
+    }
+
+    fbp-main {
+      border: 1px solid #000;
+      height: 100%;
+    }
+  </style>
 </head>
 
 <body>
@@ -14,18 +33,57 @@
     <fbp-node id="rng">
       <fbp-random-number-generator></fbp-random-number-generator>
     </fbp-node>
+
+    <fbp-node id="logr">
+      <fbp-logger></fbp-logger>
+    </fbp-node>
   </fbp-main>
 
   <script>
-    const fbpMainEl = document.querySelector('fbp-main'); // .setAttribute('state', '{"x": 10}');
-    fbpMainEl.addEventListener('fbp-ready', ({detail}) => {
-      console.log('Set state', detail, fbpMainEl.setState);
-      fbpMainEl.setState({ y: 1 });
-      // detail.init({x: 10});
-      // fbpMainEl.setState({
-
-      // });
+    const fbpMainEl = document.querySelector('fbp-main');
+    fbpMainEl.addEventListener('fbp-ready', ({ detail }) => {
+      detail.init(
+        {
+          name: 'demo flow',
+          nodes: {
+            rng: {
+              // id: 'rng',
+              type: 'random-number-generator',
+              // type: 'code',
+              position: {
+                top: 30,
+                left: 30
+              },
+              sockets: [
+                { id: 'wfr2efwdv', type: 'IN' },
+                {
+                  id: '3ewfvrgw',
+                  type: 'OUT'
+                }
+              ]
+            },
+            logr: {
+              // id: 'logr',
+              type: 'logger',
+              position: {
+                left: 30,
+                top: 30
+              },
+              sockets: [{ id: 'wfgfdfg', type: 'IN' }]
+            },
+            'logr-a': {
+              // id: 'logr-a'
+            }
+          },
+          connections: [
+            {
+              from: 'wfr2efwdv',
+              to: 'wfgfdfg'
+            }
+          ]
+        });
     });
   </script>
 </body>
+
 </html>

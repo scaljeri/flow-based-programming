@@ -1,13 +1,19 @@
 import {
-  Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Input, OnChanges, HostListener, ElementRef, AfterViewInit, SimpleChanges, SimpleChange, SimpleChange, SimpleChange
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  ChangeDetectionStrategy, Input, OnChanges, HostListener, ElementRef, AfterViewInit, SimpleChanges, SimpleChange
 } from '@angular/core';
-import { IFbpState } from '@scaljeri/fbp-core';
+import { IFbpState, createUID } from '@scaljeri/fbp-core';
 // import { Select } from '@ngxs/store';
 import { Dispatch } from '@ngxs-labs/dispatch-decorator';
-import { FbpStateActions } from 'src/app/store/actions/state';
+import { New } from 'src/app/store/actions/state';
 import { Store } from '@ngxs/store';
 import { FBP_NODE_EVENTS } from 'src/app/events';
 import { NodeManagerService, INodeServiceItem } from 'src/app/services/node-manager.service';
+import { fbpDispatchEvent } from 'src/app/utils/event';
+import * as dragUtils from '../../utils/drag-drop';
+import { NodeCoordinates } from 'src/app/store/actions/node';
 
 @Component({
   templateUrl: './main.component.html',
@@ -16,45 +22,48 @@ import { NodeManagerService, INodeServiceItem } from 'src/app/services/node-mana
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MainComponent implements OnInit, OnChanges, AfterViewInit {
-  @Input() state: IFbpState;
+  private dragNode: dragUtils.IDrag;
 
+  @Input() state: IFbpState;
   @Input() setState(state: IFbpState): void {
     this.state = state;
+    this.newState(state);
+    // this.nodes = this.element.nativeElement.shadowRoot.querySelector('slot').assignedElements();
   }
 
-  private draggable: INodeServiceItem;
+  // private nodes: HTMLElement[];
+  // private draggableNode: HTMLElement;
 
   // @Select(FfpState) animals$: Observable<IFbpState>;
 
-  @Dispatch() newState = (state: IFbpState) => new FbpStateActions.New(state);
+  @Dispatch() newState = (state: IFbpState) => new New(state);
 
   constructor(
     private element: ElementRef,
     private nodeService: NodeManagerService,
     private store: Store) {
+    const setState = this.setState.bind(this);
     (element.nativeElement as any).setState = (state: IFbpState) => {
-      this.state = state;
+      setState(state);
     };
   }
 
   ngOnInit(): void {
-    console.log('framework: main!!');
+    // TODO: Test this with an angular application
+    // At this time al nodes are present waiting for their configuration to be
+    console.log(createUID());
     setTimeout(() => {
-      // At this time al nodes are present waiting for their configuration to be
       setTimeout(() => {
-        // const nodes = this.element.nativeElement.shadowRoot.querySelector('slot').assignedElements();
-        // console.log('YES ', nodes);
-        const event = new CustomEvent('fbp-ready', { detail: { init: (state) => {
-          const change = new SimpleChange(this.state, state, !this.state);
-          this.setState(state);
-          this.ngOnChanges({ state: change});
-        }}});
-
-        this.element.nativeElement.dispatchEvent(event);
-        // this.initialize();
+        fbpDispatchEvent('fbp-ready', this.element, {
+          detail: {
+            init: (state: IFbpState) => {
+              this.setState(state);
+            }
+          }
+        });
       });
-      // console.log('main: ', this.state);
-      this.newState(this.state);
+
+      // console.log(createUID());
 
       // setTimeout(() => {
       // 	const node = this.state.nodes[0];
@@ -69,7 +78,8 @@ export class MainComponent implements OnInit, OnChanges, AfterViewInit {
   ngOnChanges(changes: SimpleChanges): void {
     // Update if state changes
     if (changes.state) {
-      console.log('YES YESY ', changes.state.previousValue, changes.state.currentValue, this.state);
+      // console.log('YES YESY ', changes.state.previousValue, changes.state.currentValue, this.state);
+      // this.store.reset(this.state);
     }
 
     // this.store.dispatch(new FbpStateActions.New(this.state));
@@ -88,27 +98,36 @@ export class MainComponent implements OnInit, OnChanges, AfterViewInit {
 
   @HostListener('pointerdown', ['$event'])
   onDragStart(event: PointerEvent): void {
-
-    const target = event.target as HTMLElement;
-    this.draggable = this.nodeService.lookupByHTMLElement(target.closest<HTMLElement>('fbp-node'));
-
+    this.dragNode = dragUtils.startDragNode(event, this.element.nativeElement);
+    // this.draggableNode = (event.target as HTMLElement).closest('fbp-node');
+    // determine pointer offset with respect to the node
+    // this.draggable = this.nodeService.lookupByHTMLElement(target.closest<HTMLElement>('fbp-node'));
   }
 
   @HostListener('pointermove', ['$event'])
   onDragMove(event: PointerEvent): void {
-    if (this.draggable) {
-      console.log('Dragging', event);
+    if (this.dragNode) {
+      this.dragNode.move(event);
     }
   }
 
   @HostListener('pointerup', ['$event'])
   @HostListener('pointercancel', ['$event'])
-  @HostListener('pointerout', ['$event'])
+  // @HostListener('pointerout', ['$event'])
   @HostListener('pointerleave', ['$event'])
   onDragEnd(event: PointerEvent): void {
-    if (this.draggable) {
-      console.log('End drag', event);
-      this.draggable = null;
+    if (this.dragNode) {
+      const result = this.dragNode.end(event);
+
+      if (!result.isClick) {
+        // persist change in coordinates
+        this.store.dispatch(new NodeCoordinates({
+          id: result.target.getAttribute('id'),
+          position: { left: result.left, top: result.top }
+        }));
+      }
+
+      this.dragNode = null;
     }
   }
 

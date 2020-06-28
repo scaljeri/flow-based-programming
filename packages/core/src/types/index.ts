@@ -1,5 +1,5 @@
 export * from './state';
-export * from './node';
+export * from './nodes';
 export * from './socket';
 export * from './node-worker';
 export * from './packet';

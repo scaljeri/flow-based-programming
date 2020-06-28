@@ -1,8 +1,8 @@
-import { IFbpNode } from './node';
+import { IFbpNodes } from './nodes';
 import { IFbpConnection } from './connection';
 
 export interface IFbpState {
 	name: string;
-	nodes: IFbpNode[];
+	nodes: IFbpNodes;
 	connections: IFbpConnection[];
 }
